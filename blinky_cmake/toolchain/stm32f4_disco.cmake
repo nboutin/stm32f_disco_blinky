@@ -2,7 +2,7 @@ set(cpu cortex-m4)
 set(fpu fpv4-sp-d16)
 set(float-abi hard)
 
-add_compile_options(-mcpu=${cpu} -mfpu=${fpu} -mfloat-abi=${float-abi})
+add_compile_options(-mcpu=${cpu} -mfpu=${fpu} -mfloat-abi=${float-abi} -mthumb)
 add_compile_options($<$<COMPILE_LANGUAGE:ASM>:-masm=auto>)
 
 add_link_options(-mcpu=${cpu} -mfpu=${fpu} -mfloat-abi=${float-abi})
