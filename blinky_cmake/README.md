@@ -14,7 +14,7 @@ https://github.com/vpetrigo/arm-cmake-toolchains
 Generate:
 
     source build_env.sh
-    cmake -S . -B Build/MinSizeRel -G Ninja --toolchain toolchain/arm_gcc_toolchain.cmake -DCMAKE_BUILD_TYPE=MinSizeRel
+    cmake -S . -B build/MinSizeRel -G Ninja --toolchain toolchain/arm_gcc_toolchain.cmake -DCMAKE_BUILD_TYPE=MinSizeRel
 
 Build:
 
