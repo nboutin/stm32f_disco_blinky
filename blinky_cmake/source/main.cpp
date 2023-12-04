@@ -5,6 +5,7 @@ void Delay_ms(volatile int time_ms);
 
 int main(void)
 {
+  HAL_Init();
   Init_OnBoard_LEDs();
   while (1)
   {
