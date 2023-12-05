@@ -14,11 +14,11 @@ set(target_name blinky_cmake)
 add_executable(${target_name}
   source/main.cpp
   source/_reset_hardware.c
-  source/RTE/Device/STM32F411VETx/startup_stm32f411xe.s
-  source/RTE/Device/STM32F411VETx/system_stm32f4xx.c
   source/newlib/source/_exit.c
   source/newlib/source/_syscalls.c
   source/newlib/source/_sbrk.c
+  source/RTE/Device/STM32F411VETx/startup_stm32f411xe.s
+  source/RTE/Device/STM32F411VETx/system_stm32f4xx.c
   source/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
   source/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
   source/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c

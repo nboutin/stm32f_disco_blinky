@@ -1,30 +1,28 @@
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR ARM)
 
-set(TOOLCHAIN_PREFIX arm-none-eabi-)
-find_program(BINUTILS_FILEPATH ${TOOLCHAIN_PREFIX}gcc NO_CACHE)
+find_program(BINUTILS_FILEPATH armclang NO_CACHE)
 
 if (NOT BINUTILS_FILEPATH)
-    message(FATAL_ERROR "Toolchain not found")
+    message(FATAL_ERROR "ARM CLang toolchain not found")
 endif ()
-
 get_filename_component(TOOLCHAIN_PATH ${BINUTILS_FILEPATH} DIRECTORY)
 
 # Without that flag CMake is not able to pass test compilation check
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+set(CMAKE_C_FLAGS_INIT "--target=arm-arm-none-eabi -mcpu=cortex-m4")
+set(CMAKE_CXX_FLAGS_INIT "--target=arm-arm-none-eabi -mcpu=cortex-m4")
 
-set(CMAKE_ASM_COMPILER ${TOOLCHAIN_PREFIX}gcc)
-set(CMAKE_C_COMPILER ${TOOLCHAIN_PREFIX}gcc)
-set(CMAKE_CXX_COMPILER ${TOOLCHAIN_PREFIX}g++)
-set(CMAKE_LINKER ${TOOLCHAIN_PREFIX}ld)
-set(CMAKE_AR ${TOOLCHAIN_PREFIX}gcc-ar)
-set(CMAKE_RANLIB ${TOOLCHAIN_PREFIX}gcc-ranlib)
-set(CMAKE_OBJCOPY ${TOOLCHAIN_PATH}/${TOOLCHAIN_PREFIX}objcopy CACHE INTERNAL "objcopy tool")
-set(CMAKE_SIZE_UTIL ${TOOLCHAIN_PATH}/${TOOLCHAIN_PREFIX}size CACHE INTERNAL "size tool")
+set(CMAKE_ASM_COMPILER armclang)
+set(CMAKE_C_COMPILER armclang)
+set(CMAKE_CXX_COMPILER armclang)
+set(CMAKE_LINKER armlink)
+set(CMAKE_AR armar)
+# set(CMAKE_RANLIB ${TOOLCHAIN_PREFIX}gcc-ranlib)
+# set(CMAKE_OBJCOPY ${TOOLCHAIN_PATH}/${TOOLCHAIN_PREFIX}objcopy CACHE INTERNAL "objcopy tool")
+# set(CMAKE_SIZE_UTIL ${TOOLCHAIN_PATH}/${TOOLCHAIN_PREFIX}size CACHE INTERNAL "size tool")
 
-execute_process(COMMAND ${CMAKE_C_COMPILER} -print-sysroot
-    OUTPUT_VARIABLE TOOLCHAIN_SYSROOT OUTPUT_STRIP_TRAILING_WHITESPACE)
-get_filename_component(TOOLCHAIN_SYSROOT ${TOOLCHAIN_SYSROOT} REALPATH)
+get_filename_component(TOOLCHAIN_SYSROOT ${TOOLCHAIN_PATH}/.. REALPATH)
 
 # Default C compiler flags
 set(CMAKE_C_FLAGS_DEBUG_INIT "-g3 -Og -Wall -pedantic -DDEBUG")
