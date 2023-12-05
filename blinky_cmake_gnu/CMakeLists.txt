@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.23)
 
 project(
   blinky_cmake
-  LANGUAGES C CXX
+  LANGUAGES C CXX ASM
   VERSION 0.1.0)
 
 include(toolchain/stm32f4_disco.cmake)
