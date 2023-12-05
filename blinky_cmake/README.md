@@ -11,10 +11,15 @@ https://github.com/vpetrigo/arm-cmake-toolchains
 
 ## Build
 
-Generate:
+Generate with ARM GNU:
 
-    source build_env.sh
+    source env_arm_gnu.sh
     cmake -S . -B build/MinSizeRel -G Ninja --toolchain toolchain/arm_gcc_toolchain.cmake -DCMAKE_BUILD_TYPE=MinSizeRel
+
+Generate with ARMClang:
+
+    source env_armclang.sh
+    cmake -S . -B build/MinSizeRel -G "MinGW Makefiles" --toolchain toolchain/armclang_toolchain.cmake -DCMAKE_BUILD_TYPE=MinSizeRel
 
 Build:
 
