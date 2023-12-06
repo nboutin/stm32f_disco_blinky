@@ -15,7 +15,6 @@ add_executable(${target_name}
   source/system_stm32f4xx.c
   source/startup_stm32f411xe.S
 )
-set_target_properties(${target_name} PROPERTIES SUFFIX ".axf")
 
 target_include_directories(${target_name} PRIVATE
   source/include
