@@ -1,0 +1,42 @@
+@startuml "stm32 startup sequence"
+title STM32 startup sequence
+
+participant "Reset_Handler" as RH
+participant "SystemInit" as SI
+participant "SystemInit_ExtMemCtl" as SI_ExMem
+participant "libc" as libc
+participant "main" as main
+
+note over RH
+Get _sidata, _sdata, _edata from linker script
+Get _sbss, _ebss from linker script
+end note
+
+RH -> RH: Set Stack Pointer from _estack
+RH -> SI: Call SystemInit
+SI -> SI: Set FPU settings
+SI -> SI_ExMem: SystemInit_ExtMemCtl
+return
+SI -> SI: Configure Vector Table location
+RH <-- SI
+note over RH
+global and static variables
+- .data = declared and explicitly initialized to a value
+- .bss = declared but not explicitly initialized to a value
+end note
+RH -> RH: Copy data from Flash to RAM (.data)
+RH -> RH: Clear .bss section
+RH -> libc: Call __libc_init_array
+return
+RH -> main: Call main
+
+note over of RH
+Define Default_Handler (do infinite loop)
+Define minimal vector table
+Provide weak aliases for each Exception Handler
+end note
+' global and static variables
+' .data = declared and explicitly initialized to a value
+' .bss = declared but not explicitly initialized to a value
+
+@enduml
