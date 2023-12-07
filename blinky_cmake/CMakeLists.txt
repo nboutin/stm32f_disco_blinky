@@ -43,6 +43,8 @@ target_compile_features(${target_name} PRIVATE c_std_11 cxx_std_14)
 string(APPEND CMAKE_C_FLAGS " -ffunction-sections -fdata-sections -flto")
 string(APPEND CMAKE_CXX_FLAGS " -ffunction-sections -fdata-sections -flto")
 
+string(APPEND CMAKE_CXX_FLAGS " -fno-exceptions -fno-rtti")
+
 # Set linker script
 string(APPEND CMAKE_EXE_LINKER_FLAGS " -T ${CMAKE_SOURCE_DIR}/source/STM32F401VCTX_FLASH.ld -static -flto")
 
