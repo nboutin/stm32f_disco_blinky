@@ -40,11 +40,11 @@ target_compile_definitions(${target_name} PRIVATE USE_HAL_DRIVER STM32F401xC)
 target_compile_features(${target_name} PRIVATE c_std_11 cxx_std_14)
 
 # Optimization flags: place function and data in their own sections
-string(APPEND CMAKE_C_FLAGS " -ffunction-sections -fdata-sections")
-string(APPEND CMAKE_CXX_FLAGS " -ffunction-sections -fdata-sections")
+string(APPEND CMAKE_C_FLAGS " -ffunction-sections -fdata-sections -flto")
+string(APPEND CMAKE_CXX_FLAGS " -ffunction-sections -fdata-sections -flto")
 
 # Set linker script
-string(APPEND CMAKE_EXE_LINKER_FLAGS " -T ${CMAKE_SOURCE_DIR}/source/STM32F401VCTX_FLASH.ld -static ")
+string(APPEND CMAKE_EXE_LINKER_FLAGS " -T ${CMAKE_SOURCE_DIR}/source/STM32F401VCTX_FLASH.ld -static -flto")
 
 # Discard unused sections
 string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--gc-sections")
