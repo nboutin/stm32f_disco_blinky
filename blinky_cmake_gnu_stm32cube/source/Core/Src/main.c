@@ -3,9 +3,6 @@
 
 #include "error_handler.h"
 #include "gpio.h"
-// #include "i2c.h"
-// #include "i2s.h"
-// #include "spi.h"
 
 void SystemClock_Config(void);
 void PeriphCommonClock_Config(void);
