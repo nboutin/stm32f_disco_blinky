@@ -47,3 +47,8 @@ string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--gc-sections")
 string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--start-group -lc -lm -Wl,--end-group")
 
 include(../cmake/binary_size.cmake)
+
+# --- install
+
+include(GNUInstallDirs)
+install(TARGETS ${target_name} EXPORT ${target_name})

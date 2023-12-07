@@ -1,5 +1,6 @@
 
 set(flags "-Wall -Werror -Wextra -Wpedantic -Wconversion -Wcast-align -Wunused -Wshadow")
+string(APPEND flags " -funsigned-char -fshort-enums -fshort-wchar")
 string(APPEND flags " -Wpointer-arith -Wcast-qual -Wno-missing-braces")
 
 
