@@ -5,54 +5,8 @@ project(blinky_cmake
 
 include(toolchain/stm32f4_disco.cmake)
 include(cmake/compilation_flags.cmake)
+include(cmake/map_file.cmake)
 
 # ---
 
-set(target_name blinky_cmake)
-
-add_executable(${target_name}
-  source/Core/Src/main.cpp
-  source/Core/Src/gpio.c
-  source/Core/Src/error_handler.c
-  source/Core/Src/stm32f4xx_it.c
-  source/Core/Src/stm32f4xx_hal_msp.c
-  source/Core/Src/syscalls.c
-  source/Core/Src/sysmem.c
-  source/Core/Src/system_stm32f4xx.c
-  source/Core/Startup/startup_stm32f401vctx.s
-  source/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
-  source/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
-  source/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
-  source/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
-  source/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
-)
-
-target_include_directories(${target_name} PRIVATE
-  source/core/Inc
-  source/Drivers/STM32F4xx_HAL_Driver/Inc
-  source/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
-  source/Drivers/CMSIS/Device/ST/STM32F4xx/Include
-  source/Drivers/CMSIS/Include
-)
-
-target_compile_definitions(${target_name} PRIVATE USE_HAL_DRIVER STM32F401xC)
-
-target_compile_features(${target_name} PRIVATE c_std_11 cxx_std_14)
-
-# Optimization flags: place function and data in their own sections
-string(APPEND CMAKE_C_FLAGS " -ffunction-sections -fdata-sections -flto")
-string(APPEND CMAKE_CXX_FLAGS " -ffunction-sections -fdata-sections -flto")
-
-string(APPEND CMAKE_CXX_FLAGS " -fno-exceptions -fno-rtti")
-
-# Set linker script
-string(APPEND CMAKE_EXE_LINKER_FLAGS " -T ${CMAKE_SOURCE_DIR}/source/STM32F401VCTX_FLASH.ld -static -flto")
-
-# Discard unused sections
-string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--gc-sections")
-
-# Use C math library
-string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--start-group -lc -lm -Wl,--end-group")
-
-include(cmake/map_file.cmake)
-include(cmake/binary_size.cmake)
+add_subdirectory(blinky)

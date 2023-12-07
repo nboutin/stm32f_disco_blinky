@@ -34,7 +34,7 @@ int main(void)
       HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, GPIO_PIN_SET);
       Delay_ms(2000);
       HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, GPIO_PIN_RESET);
-      Delay_ms(100);
+      Delay_ms(1000);
     }
   }
 }
