@@ -38,9 +38,17 @@ target_compile_definitions(${target_name} PRIVATE USE_HAL_DRIVER STM32F401xC)
 
 target_compile_features(${target_name} PRIVATE c_std_11)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -ffunction-sections -fdata-sections -fstack-usage -fcyclomatic-complexity")
+# Optimization flags: place function and data in their own sections
+string(APPEND CMAKE_C_FLAGS " -ffunction-sections -fdata-sections")
 
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -T ${CMAKE_SOURCE_DIR}/source/STM32F401VCTX_FLASH.ld \
-  -Wl,-Map=${target_name}.map -Wl,--gc-sections -static -Wl,--start-group -lc -lm -Wl,--end-group")
+# Set linker script
+string(APPEND CMAKE_EXE_LINKER_FLAGS " -T ${CMAKE_SOURCE_DIR}/source/STM32F401VCTX_FLASH.ld -static ")
 
-  include(cmake/binary_size.cmake)
+# Discard unused sections
+string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--gc-sections")
+
+# Use C math library
+string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--start-group -lc -lm -Wl,--end-group")
+
+include(cmake/map_file.cmake)
+include(cmake/binary_size.cmake)
