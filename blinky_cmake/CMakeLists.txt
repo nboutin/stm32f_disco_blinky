@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.23)
 
 project(blinky_cmake
-  LANGUAGES C ASM)
+  LANGUAGES CXX C ASM)
 
 include(toolchain/stm32f4_disco.cmake)
 
@@ -10,7 +10,7 @@ include(toolchain/stm32f4_disco.cmake)
 set(target_name blinky_cmake)
 
 add_executable(${target_name}
-  source/Core/Src/main.c
+  source/Core/Src/main.cpp
   source/Core/Src/gpio.c
   source/Core/Src/error_handler.c
   source/Core/Src/stm32f4xx_it.c
@@ -36,10 +36,11 @@ target_include_directories(${target_name} PRIVATE
 
 target_compile_definitions(${target_name} PRIVATE USE_HAL_DRIVER STM32F401xC)
 
-target_compile_features(${target_name} PRIVATE c_std_11)
+target_compile_features(${target_name} PRIVATE c_std_11 cxx_std_14)
 
 # Optimization flags: place function and data in their own sections
 string(APPEND CMAKE_C_FLAGS " -ffunction-sections -fdata-sections")
+string(APPEND CMAKE_CXX_FLAGS " -ffunction-sections -fdata-sections")
 
 # Set linker script
 string(APPEND CMAKE_EXE_LINKER_FLAGS " -T ${CMAKE_SOURCE_DIR}/source/STM32F401VCTX_FLASH.ld -static ")
