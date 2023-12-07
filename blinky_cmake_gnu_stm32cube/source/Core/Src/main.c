@@ -1,9 +1,11 @@
 
-#include "main.h"
+#include "stm32f4xx_hal.h"
+
+#include "error_handler.h"
 #include "gpio.h"
-#include "i2c.h"
-#include "i2s.h"
-#include "spi.h"
+// #include "i2c.h"
+// #include "i2s.h"
+// #include "spi.h"
 
 void SystemClock_Config(void);
 void PeriphCommonClock_Config(void);
@@ -33,7 +35,7 @@ int main(void)
     while (1)
     {
       HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, GPIO_PIN_SET);
-      Delay_ms(1000);
+      Delay_ms(2000);
       HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, GPIO_PIN_RESET);
       Delay_ms(250);
     }
@@ -121,18 +123,7 @@ void PeriphCommonClock_Config(void)
   }
 }
 
-/**
- * @brief  This function is executed in case of error occurrence.
- * @retval None
- */
-void Error_Handler(void)
-{
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
-  {
-  }
-}
+
 
 #ifdef USE_FULL_ASSERT
 /**

@@ -10,6 +10,7 @@ set(target_name blinky_cmake_gnu_stm32cube)
 add_executable(${target_name}
   source/Core/Src/main.c
   source/Core/Src/gpio.c
+  source/Core/Src/error_handler.c
   source/Core/Src/stm32f4xx_it.c
   source/Core/Src/stm32f4xx_hal_msp.c
   source/Core/Src/syscalls.c
