@@ -5,6 +5,8 @@ project(blinky_cmake
 
 include(toolchain/stm32f4_disco.cmake)
 
+# ---
+
 set(target_name blinky_cmake)
 
 add_executable(${target_name}
@@ -34,8 +36,11 @@ target_include_directories(${target_name} PRIVATE
 
 target_compile_definitions(${target_name} PRIVATE USE_HAL_DRIVER STM32F401xC)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11 -ffunction-sections -fdata-sections -Wall \
--fstack-usage -fcyclomatic-complexity")
+target_compile_features(${target_name} PRIVATE c_std_11)
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -ffunction-sections -fdata-sections -fstack-usage -fcyclomatic-complexity")
 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -T ${CMAKE_SOURCE_DIR}/source/STM32F401VCTX_FLASH.ld \
   -Wl,-Map=${target_name}.map -Wl,--gc-sections -static -Wl,--start-group -lc -lm -Wl,--end-group")
+
+  include(cmake/binary_size.cmake)
