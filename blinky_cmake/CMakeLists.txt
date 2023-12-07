@@ -4,6 +4,7 @@ project(blinky_cmake
   LANGUAGES CXX C ASM)
 
 include(toolchain/stm32f4_disco.cmake)
+include(cmake/compilation_flags.cmake)
 
 # ---
 

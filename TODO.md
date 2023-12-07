@@ -1,8 +1,6 @@
 # TODO
 
 ## Setup
-- use blinky_uvision map file to find missing object
-- use keil armclang compiler with blinky_cmake to compare binary
 - blinky with cmake, picolibc
 - cross-compilation using clang
 - cmake formatter
@@ -25,7 +23,3 @@
 
 - Effective modern C++ - Scott Meyer
 - https://www.artima.com/articles/the-most-important-c-non-book-publicationsemeverem
-
-## Done
-
-- use compilation flags from keil uvision
