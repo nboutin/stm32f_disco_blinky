@@ -27,6 +27,7 @@ end note
 RH -> RH: Copy data from Flash to RAM (.data)
 RH -> RH: Clear .bss section
 RH -> libc: Call __libc_init_array
+libc -> libc: Call initialization functions of the C++ static constructors
 return
 RH -> main: Call main
 
@@ -35,8 +36,5 @@ Define Default_Handler (do infinite loop)
 Define minimal vector table
 Provide weak aliases for each Exception Handler
 end note
-' global and static variables
-' .data = declared and explicitly initialized to a value
-' .bss = declared but not explicitly initialized to a value
 
 @enduml
