@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.23)
 
-project(blinky_cmake_gnu_stm32cube
+project(blinky_cmake
   LANGUAGES C ASM)
 
 # include(toolchain/stm32f4_disco.cmake)
 
-set(target_name blinky_cmake_gnu_stm32cube)
+set(target_name blinky_cmake)
 
 add_executable(${target_name}
   source/Core/Src/main.c
@@ -22,7 +22,6 @@ add_executable(${target_name}
   source/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
   source/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
   source/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
-  # source/Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hcd.c
 )
 
 target_include_directories(${target_name} PRIVATE
