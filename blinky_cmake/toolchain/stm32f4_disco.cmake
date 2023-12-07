@@ -2,7 +2,13 @@ set(cpu cortex-m4)
 set(fpu fpv4-sp-d16)
 set(float-abi hard)
 
-message(STATUS "CMAKE_C_COMPILER_ID: ${CMAKE_C_COMPILER_ID}")
+set(CMAKE_ASM_FLAGS "-mcpu=${cpu} -mfpu=${fpu} -mfloat-abi=${float-abi} -mthumb \
+  -x assembler-with-cpp --specs=nano.specs")
+
+set(CMAKE_C_FLAGS "-mcpu=${cpu} -mfpu=${fpu} -mfloat-abi=${float-abi} -mthumb")
+
+set(CMAKE_EXE_LINKER_FLAGS "-mcpu=${cpu} -mfpu=${fpu} -mfloat-abi=${float-abi} -mthumb \
+  --specs=nosys.specs --specs=nano.specs")
 
 # add_compile_options(
 #   # $<$<COMPILE_LANGUAGE:ASM>:-masm=auto>
@@ -20,6 +26,6 @@ message(STATUS "CMAKE_C_COMPILER_ID: ${CMAKE_C_COMPILER_ID}")
 # set(CMAKE_CXX_FLAGS "-mcpu=${cpu} -mfpu=${fpu} -mfloat-abi=${float-abi}")
 # set(CMAKE_EXE_LINKER_FLAGS "-mcpu=${cpu} -mfpu=${fpu} -mfloat-abi=${float-abi}")
 
-set(CMAKE_C_FLAGS "-mcpu=${cpu} -mfpu=${fpu} -mfloat-abi=${float-abi} -fdata-sections -ffunction-sections --specs=nano.specs")
+# set(CMAKE_C_FLAGS "-mcpu=${cpu} -mfpu=${fpu} -mfloat-abi=${float-abi} -fdata-sections -ffunction-sections --specs=nano.specs")
 
-set(CMAKE_EXE_LINKER_FLAGS "--specs=nosys.specs -Wl,--gc-sections -static -Wl,--start-group -lc -lm -Wl,--end-group")
+# set(CMAKE_EXE_LINKER_FLAGS "--specs=nosys.specs -Wl,--gc-sections -static -Wl,--start-group -lc -lm -Wl,--end-group")
