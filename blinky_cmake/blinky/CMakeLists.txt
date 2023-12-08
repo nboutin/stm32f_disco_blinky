@@ -9,8 +9,9 @@ add_executable(${target_name}
   system/source/stm32f4xx_hal_msp.c
   system/source/syscalls.c
   system/source/sysmem.c
-  system/source/system_stm32f4xx.c
-  system/source/startup_stm32f411xe.S
+  # ---
+  lib/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc/startup_stm32f411xe.s
+  lib/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
   lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
   lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
   lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
@@ -21,10 +22,10 @@ add_executable(${target_name}
 target_include_directories(${target_name} PRIVATE
   application/include
   system/include
+  lib/CMSIS/Core/Include
+  lib/CMSIS/Device/ST/STM32F4xx/Include
   lib/STM32F4xx_HAL_Driver/Inc
   lib/STM32F4xx_HAL_Driver/Inc/Legacy
-  lib/CMSIS/Device/ST/STM32F4xx/Include
-  lib/CMSIS/Include
 )
 
 target_compile_definitions(${target_name} PRIVATE USE_HAL_DRIVER STM32F401xC)
