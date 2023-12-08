@@ -11,20 +11,20 @@ add_executable(${target_name}
   system/source/sysmem.c
   system/source/system_stm32f4xx.c
   system/source/startup_stm32f411xe.S
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
-  Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
+  lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
+  lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
+  lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
+  lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
+  lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
 )
 
 target_include_directories(${target_name} PRIVATE
   application/include
   system/include
-  Drivers/STM32F4xx_HAL_Driver/Inc
-  Drivers/STM32F4xx_HAL_Driver/Inc/Legacy
-  Drivers/CMSIS/Device/ST/STM32F4xx/Include
-  Drivers/CMSIS/Include
+  lib/STM32F4xx_HAL_Driver/Inc
+  lib/STM32F4xx_HAL_Driver/Inc/Legacy
+  lib/CMSIS/Device/ST/STM32F4xx/Include
+  lib/CMSIS/Include
 )
 
 target_compile_definitions(${target_name} PRIVATE USE_HAL_DRIVER STM32F401xC)
