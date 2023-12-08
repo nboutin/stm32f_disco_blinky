@@ -39,7 +39,7 @@ string(APPEND CMAKE_CXX_FLAGS " -ffunction-sections -fdata-sections -flto")
 string(APPEND CMAKE_CXX_FLAGS " -fno-exceptions -fno-rtti")
 
 # Set linker script
-string(APPEND CMAKE_EXE_LINKER_FLAGS " -T ${CMAKE_CURRENT_SOURCE_DIR}/linker/STM32F401VCTX_FLASH.ld -static -flto")
+string(APPEND CMAKE_EXE_LINKER_FLAGS " -T ${CMAKE_CURRENT_SOURCE_DIR}/linker/STM32F411VEHX_FLASH.ld -static -flto")
 
 # Discard unused sections
 string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--gc-sections")
