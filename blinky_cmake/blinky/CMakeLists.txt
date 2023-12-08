@@ -28,7 +28,7 @@ target_include_directories(${target_name} PRIVATE
   lib/STM32F4xx_HAL_Driver/Inc/Legacy
 )
 
-target_compile_definitions(${target_name} PRIVATE USE_HAL_DRIVER STM32F401xC)
+target_compile_definitions(${target_name} PRIVATE USE_HAL_DRIVER STM32F411xE)
 
 target_compile_features(${target_name} PRIVATE c_std_11 cxx_std_14)
 

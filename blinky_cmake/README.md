@@ -28,7 +28,7 @@ Build:
 
 Install:
 
-    cmake --install build/MinSizeRel --prefix ~/.local
+    cmake --install build/MinSizeRel --prefix .
 
 ## External files
 
