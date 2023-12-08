@@ -3,6 +3,7 @@
 ## Setup
 
 - reduce blinky project file number
+- add linker block diagram
 - use crt0 of GNU compiler
 - blinky with cmake, picolibc
 - cross-compilation using clang
