@@ -1,6 +1,9 @@
 # TODO
 
 ## Setup
+
+- reduce blinky project file number
+- use crt0 of GNU compiler
 - blinky with cmake, picolibc
 - cross-compilation using clang
 - cmake formatter
@@ -18,6 +21,11 @@
 ## Library
 
 - SI Unit with c++
+
+## Article
+
+https://charleskorn.com/2016/05/08/a-deeper-look-at-the-stm32f4-project-template-linking-it-all-together/
+
 
 ## Book
 

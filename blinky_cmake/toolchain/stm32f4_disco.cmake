@@ -9,7 +9,7 @@ set(CMAKE_C_FLAGS "-mcpu=${cpu} -mfpu=${fpu} -mfloat-abi=${float-abi} -mthumb")
 set(CMAKE_CXX_FLAGS "-mcpu=${cpu} -mfpu=${fpu} -mfloat-abi=${float-abi} -mthumb")
 
 set(CMAKE_EXE_LINKER_FLAGS "-mcpu=${cpu} -mfpu=${fpu} -mfloat-abi=${float-abi} -mthumb \
-  --specs=nosys.specs --specs=nano.specs")
+  --specs=nosys.specs --specs=nano.specs") # newlib-nano
 
 # add_compile_options(
 #   # $<$<COMPILE_LANGUAGE:ASM>:-masm=auto>
