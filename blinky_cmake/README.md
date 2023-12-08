@@ -1,4 +1,4 @@
-# STM32F401C_disco board - C++ Blinky with CMake
+# STM32F411E-DISCO board - C++ Blinky with CMake
 
 ## Credit
 

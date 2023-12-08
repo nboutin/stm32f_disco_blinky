@@ -26,12 +26,7 @@ Get _sbss, _ebss from linker script
 end note
 
 RH -> RH: Set Stack Pointer from _estack
-RH -> SI: Call SystemInit
-SI -> SI: Set FPU settings
-SI -> SI_ExMem: SystemInit_ExtMemCtl
-return
-SI -> SI: Configure Vector Table location
-RH <-- SI
+
 note over RH
 global and static variables
 - .data = declared and explicitly initialized to a value
@@ -39,9 +34,18 @@ global and static variables
 end note
 RH -> RH: Copy data from Flash to RAM (.data)
 RH -> RH: Clear .bss section
+
+RH -> SI: Call SystemInit
+SI -> SI: Set FPU settings
+SI -> SI_ExMem: SystemInit_ExtMemCtl
+return
+SI -> SI: Configure Vector Table location
+RH <-- SI
+
 RH -> libc: Call __libc_init_array
 libc -> libc: Call initialization functions of the C++ static constructors
 RH <-- libc
+
 RH -> main: Call main
 
 note over of RH

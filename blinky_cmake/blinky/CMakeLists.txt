@@ -10,7 +10,7 @@ add_executable(${target_name}
   system/source/syscalls.c
   system/source/sysmem.c
   system/source/system_stm32f4xx.c
-  system/source/startup_stm32f401vctx.s
+  system/source/startup_stm32f411xe.S
   Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
   Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
   Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
