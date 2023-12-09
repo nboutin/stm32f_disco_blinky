@@ -48,6 +48,7 @@ string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--gc-sections")
 string(APPEND CMAKE_EXE_LINKER_FLAGS " -Wl,--start-group -lc -lm -Wl,--end-group")
 
 include(../cmake/binary_size.cmake)
+include(../cmake/map_file.cmake)
 
 # --- install
 

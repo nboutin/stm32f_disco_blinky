@@ -5,7 +5,6 @@ project(blinky_cmake
 
 include(toolchain/stm32f4_disco.cmake)
 include(cmake/compilation_flags.cmake)
-include(cmake/map_file.cmake)
 
 # ---
 
