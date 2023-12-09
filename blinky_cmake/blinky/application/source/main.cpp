@@ -1,5 +1,5 @@
 
-#include "stm32f401C_disco_board_define.h"
+#include "stm32f411e_discovery.h"
 #include "stm32f4xx_hal.h"
 
 static void PeriphCommonClock_Config(void);
@@ -26,9 +26,9 @@ int main(void)
   {
     while (1)
     {
-      HAL_GPIO_WritePin(GPIOD, LD4_Pin | LD3_Pin | LD5_Pin | LD6_Pin, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(GPIOD, LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN, GPIO_PIN_SET);
       Delay_ms(2000);
-      HAL_GPIO_WritePin(GPIOD, LD4_Pin | LD3_Pin | LD5_Pin | LD6_Pin, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(GPIOD, LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN, GPIO_PIN_RESET);
       Delay_ms(2000);
     }
   }
@@ -38,11 +38,11 @@ void Init_OnBoard_LEDs(void)
 {
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
-  HAL_GPIO_WritePin(GPIOD, LD4_Pin | LD3_Pin | LD5_Pin | LD6_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOD, LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN, GPIO_PIN_RESET);
 
   GPIO_InitTypeDef BoardLEDs;
   BoardLEDs.Mode  = GPIO_MODE_OUTPUT_PP;
-  BoardLEDs.Pin   = LD4_Pin | LD3_Pin | LD5_Pin | LD6_Pin;
+  BoardLEDs.Pin   = LED4_PIN | LED3_PIN | LED5_PIN | LED6_PIN;
   BoardLEDs.Pull  = GPIO_NOPULL;
   BoardLEDs.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOD, &BoardLEDs);

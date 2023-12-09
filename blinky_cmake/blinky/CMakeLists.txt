@@ -19,6 +19,7 @@ add_executable(${target_name}
 
 target_include_directories(${target_name} PRIVATE
   system/include
+  lib/Drivers/BSP/STM32F411E-Discovery
   lib/Drivers/CMSIS/Core/Include
   lib/Drivers/CMSIS/Device/ST/STM32F4xx/Include
   lib/Drivers/STM32F4xx_HAL_Driver/Inc
