@@ -3,8 +3,6 @@ set(target_name blinky_cmake)
 
 add_executable(${target_name}
   application/source/main.cpp
-  application/source/gpio.c
-  application/source/error_handler.c
   system/source/stm32f4xx_it.c
   system/source/stm32f4xx_hal_msp.c
   system/source/syscalls.c
@@ -20,7 +18,6 @@ add_executable(${target_name}
 )
 
 target_include_directories(${target_name} PRIVATE
-  application/include
   system/include
   lib/Drivers/CMSIS/Core/Include
   lib/Drivers/CMSIS/Device/ST/STM32F4xx/Include

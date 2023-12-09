@@ -1,15 +1,13 @@
 
+#include "stm32f401C_disco_board_define.h"
 #include "stm32f4xx_hal.h"
 
-#include "error_handler.h"
-#include "gpio.h"
+static void PeriphCommonClock_Config(void);
+static void SystemClock_Config(void);
 
-void SystemClock_Config(void);
-void PeriphCommonClock_Config(void);
-void MX_USB_HOST_Process(void);
-
-void Init_OnBoard_LEDs(void);
-void Delay_ms(volatile int time_ms);
+static void Init_OnBoard_LEDs(void);
+static void Delay_ms(volatile int time_ms);
+static void Error_Handler(void);
 
 int main(void)
 {
@@ -24,16 +22,13 @@ int main(void)
 
   Init_OnBoard_LEDs();
 
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-
   while (1)
   {
     while (1)
     {
-      HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(GPIOD, LD4_Pin | LD3_Pin | LD5_Pin | LD6_Pin, GPIO_PIN_SET);
       Delay_ms(2000);
-      HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(GPIOD, LD4_Pin | LD3_Pin | LD5_Pin | LD6_Pin, GPIO_PIN_RESET);
       Delay_ms(2000);
     }
   }
@@ -42,10 +37,14 @@ int main(void)
 void Init_OnBoard_LEDs(void)
 {
   __HAL_RCC_GPIOD_CLK_ENABLE();
+
+  HAL_GPIO_WritePin(GPIOD, LD4_Pin | LD3_Pin | LD5_Pin | LD6_Pin, GPIO_PIN_RESET);
+
   GPIO_InitTypeDef BoardLEDs;
-  BoardLEDs.Mode = GPIO_MODE_OUTPUT_PP;
-  BoardLEDs.Pin  = GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15;
-  BoardLEDs.Pull = GPIO_NOPULL;
+  BoardLEDs.Mode  = GPIO_MODE_OUTPUT_PP;
+  BoardLEDs.Pin   = LD4_Pin | LD3_Pin | LD5_Pin | LD6_Pin;
+  BoardLEDs.Pull  = GPIO_NOPULL;
+  BoardLEDs.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOD, &BoardLEDs);
 }
 
@@ -61,7 +60,7 @@ void Delay_ms(volatile int time_ms)
  * @brief System Clock Configuration
  * @retval None
  */
-void SystemClock_Config(void)
+static void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
@@ -105,7 +104,7 @@ void SystemClock_Config(void)
  * @brief Peripherals Common Clock Configuration
  * @retval None
  */
-void PeriphCommonClock_Config(void)
+static void PeriphCommonClock_Config(void)
 {
   RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
 
@@ -120,7 +119,13 @@ void PeriphCommonClock_Config(void)
   }
 }
 
-
+static void Error_Handler(void)
+{
+  __disable_irq();
+  while (1)
+  {
+  }
+}
 
 #ifdef USE_FULL_ASSERT
 /**
