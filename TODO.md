@@ -2,9 +2,6 @@
 
 ## Setup
 
-- reduce blinky project file number
-- add linker block diagram
-- use crt0 of GNU compiler
 - blinky with cmake, picolibc
 - cross-compilation using clang
 - cmake formatter
@@ -13,6 +10,7 @@
 - use pacman to get tools
 - debug stm32f with openOCD and vscode
 - QEMU ARM see https://eclipse-embed-cdt.github.io/tutorials/blinky-arm/
+- use crt0 of GNU compiler
 
 ## Design
 

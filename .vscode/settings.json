@@ -1,7 +1,6 @@
 {
   "editor.tabSize": 2,
-  "cmake.useCMakePresets": "always",
   "cmake.sourceDirectory": [
-    "${workspaceFolder}/blinky_cmake"
+    "${workspaceFolder}/blinky_cmake",
   ],
 }
